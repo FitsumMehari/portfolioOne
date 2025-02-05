@@ -38,8 +38,8 @@ This section highlights some of my achievements, including certifications:
 
 ## How to Run Locally
 
-1. Clone the repository: `git clone https://github.com/FitsumMehari/your-repo-name.git` (Replace `your-repo-name` with the actual repository name).
-2. Navigate to the project directory: `cd your-repo-name`
+1. Clone the repository: `git clone https://github.com/FitsumMehari/portfolioOne.git`
+2. Navigate to the project directory: `cd portfolioOne`
 3. Open the `index.html` file in your web browser.
 
 ## Live Demo

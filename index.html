@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitsum Mehari - Portfolio</title>
-    <!-- Favicon - You can replace this with your own icon later -->
+    <!-- Favicon -->
     <link rel="icon" href="https://placehold.co/32x32/000000/FFFFFF?text=P" type="image/x-icon">
 
     <!-- Google Fonts - Inter for a professional look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS - CORRECTED: Changed 'xintegrity' to 'integrity' -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <!-- Font Awesome for Icons - CORRECTED: Changed 'xintegrity' to 'integrity' -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Custom CSS (remains inline as provided) -->
+    <!-- Custom CSS -->
     <style>
+        /* CSS Variables for easy theme changes */
         :root {
             --primary-color: #4A90E2; /* Blue */
             --secondary-color: #F8F9FA; /* Light Gray */
@@ -25,105 +20,46 @@
             --text-color: #343A40; /* Slightly lighter dark text */
             --light-text-color: #6C757D; /* Medium Gray for secondary text */
             --border-radius: 0.75rem;
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+        }
+
+        /* Basic Reset & Body Styling */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--secondary-color);
             color: var(--text-color);
-            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+            scroll-behavior: smooth;
+            line-height: 1.6;
         }
 
-        /* Navbar Styling */
-        .navbar {
-            background-color: var(--dark-color) !important;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Container for content width */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .navbar-brand, .nav-link {
-            color: white !important;
-            font-weight: 600;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-
-        .nav-item {
-            margin: 0 0.5rem;
-        }
-
-        /* Section Padding */
+        /* Section Styling */
         section {
             padding: 5rem 0;
             position: relative;
-            z-index: 1; /* Ensure content is above any background effects */
+            z-index: 1;
+            text-align: center; /* Center content by default */
         }
 
-        /* Hero Section */
-        #home {
-            background: linear-gradient(135deg, var(--dark-color) 0%, #343A40 100%);
+        section.bg-light {
+            background-color: white; /* Simulate Bootstrap's bg-light */
+        }
+
+        section.bg-dark {
+            background-color: var(--dark-color);
             color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden; /* Hide overflow for particles */
-        }
-
-        /* Particle effect (simple CSS based) */
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-
-        #home h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        #home p {
-            font-size: 1.5rem;
-            font-weight: 300;
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
-        }
-
-        .hero-btn {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            padding: 0.8rem 2rem;
-            font-size: 1.2rem;
-            border-radius: var(--border-radius);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .hero-btn:hover {
-            background-color: #3A7BD5; /* Slightly darker primary */
-            border-color: #3A7BD5;
-            transform: translateY(-3px);
-        }
-
-        /* General Card/Section Styling */
-        .card {
-            border-radius: var(--border-radius);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
-            border: none;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
         }
 
         .section-title {
@@ -133,6 +69,9 @@
             color: var(--dark-color);
             position: relative;
             display: inline-block;
+        }
+        .section-title.white-text {
+            color: white;
         }
 
         .section-title::after {
@@ -147,87 +86,340 @@
             border-radius: 5px;
         }
 
-        /* About Section */
-        #about .profile-img {
-            max-width: 300px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        /* Navbar Styling */
+        .navbar {
+            background-color: var(--dark-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensure navbar stays on top */
+            padding: 1rem 0;
         }
 
-        /* Skills Section */
-        #skills .skill-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            height: 100%; /* Ensure consistent height */
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        #skills .skill-item i {
-            font-size: 3rem;
+        .navbar-brand {
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+
+        .nav-link {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
             color: var(--primary-color);
+        }
+
+        /* Hamburger Menu (for mobile) */
+        .menu-toggle {
+            display: none; /* Hidden by default on larger screens */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            position: relative;
+            z-index: 1001; /* Above nav-list */
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-list {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-color);
+                height: 0; /* Hidden by default */
+                overflow: hidden;
+                transition: height 0.3s ease-in-out;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .nav-list.open {
+                height: auto; /* Show when open */
+                padding-bottom: 1rem;
+            }
+            .nav-item {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem 0;
+            }
+            .nav-link {
+                display: block; /* Make links full width of item */
+            }
+        }
+
+
+        /* Hero Section */
+        #home {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #343A40 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center horizontally */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before { /* Particle effect */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        #home .content {
+            position: relative; /* Bring content above particles */
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
-        #skills .skill-item h4 {
-            font-weight: 600;
-            color: var(--dark-color);
+        #home p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 0 auto 2rem auto;
         }
 
-        /* Projects Section */
-        #projects .project-card {
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent; /* Default border */
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #3A7BD5; /* Slightly darker primary */
+            border-color: #3A7BD5;
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        #about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem; /* Spacing between image and text */
+            text-align: left;
+        }
+
+        #about .profile-img {
+            max-width: 300px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            flex-shrink: 0; /* Prevent shrinking */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove extra space below image */
+        }
+
+        #about p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
             background-color: white;
             padding: 1.5rem;
             border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+            height: 100%; /* Ensure consistent height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item .icon-placeholder {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1; /* Adjust line height for icons */
+        }
+
+        .skill-item h4 {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item p {
+            color: var(--light-text-color);
+            font-size: 0.95rem;
+            margin-bottom: 0; /* Remove default paragraph margin */
+        }
+
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.2s ease-in-out;
             height: 100%; /* Ensure consistent height */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            text-align: left; /* Align text within card */
         }
 
-        #projects .project-card img {
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            max-width: 100%;
             height: 200px; /* Fixed height for project images */
             object-fit: cover; /* Cover the area */
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            display: block; /* Remove extra space below image */
         }
 
-        #projects .project-card h5 {
+        .project-card h5 {
             font-weight: 600;
             color: var(--dark-color);
             margin-bottom: 0.75rem;
+            font-size: 1.25rem;
         }
 
-        #projects .project-card p {
+        .project-card p {
             color: var(--light-text-color);
             flex-grow: 1; /* Allow description to take available space */
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
-        #projects .project-link {
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .project-link {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, text-decoration 0.2s ease;
+            display: inline-flex; /* Align icon and text */
+            align-items: center;
         }
 
-        #projects .project-link:hover {
+        .project-link:hover {
             color: #3A7BD5; /* Slightly darker primary */
             text-decoration: underline;
         }
 
+        .project-link svg {
+            margin-left: 0.5rem;
+            width: 16px;
+            height: 16px;
+            fill: currentColor; /* Inherit color from parent link */
+        }
+
+
         /* Contact Section */
-        #contact {
-            background-color: var(--dark-color);
-            color: white;
-        }
-
-        #contact .section-title {
-            color: white;
-        }
-
         #contact .contact-info p {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
+        }
+        #contact .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        #contact .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+        #contact .social-links {
+            margin-top: 2rem;
         }
 
         #contact .social-links a {
@@ -235,6 +427,7 @@
             font-size: 2rem;
             margin: 0 0.75rem;
             transition: color 0.2s ease, transform 0.2s ease;
+            text-decoration: none; /* Remove underline from links */
         }
 
         #contact .social-links a:hover {
@@ -244,90 +437,120 @@
 
         /* Footer */
         .footer {
-            background-color: #1A1D20; /* Even darker than dark-color */
+            background-color: #1A1D20;
             color: rgba(255, 255, 255, 0.7);
             padding: 2rem 0;
             font-size: 0.9rem;
+            text-align: center;
         }
 
+        /* Utility Classes (mimicking common Bootstrap ones) */
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .mb-5 { margin-bottom: 3rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .me-2 { margin-right: 0.5rem; }
+        .lead { font-size: 1.25rem; font-weight: 300; }
+        .display-3 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; } /* Equivalent to Bootstrap's display-3 */
+
         /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            #home h1 {
-                font-size: 2.5rem;
-            }
+        @media (max-width: 992px) { /* Adjust for medium screens */
+            #home h1 { font-size: 3rem; }
+            #home p { font-size: 1.3rem; }
+            .section-title { font-size: 2.2rem; }
+            #about .about-content { flex-direction: column; text-align: center; }
+            #about .profile-img { margin-bottom: 1.5rem; }
+        }
 
-            #home p {
-                font-size: 1.2rem;
+        @media (max-width: 768px) { /* Adjust for small screens (mobile) */
+            section { padding: 3rem 0; }
+            #home h1 { font-size: 2.5rem; }
+            #home p { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+            .btn { font-size: 1rem; padding: 0.7rem 1.5rem; }
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr; /* Stack columns on small screens */
             }
+        }
 
-            .section-title {
-                font-size: 2rem;
-            }
+        /* Animation classes (from previous code, simple for this version) */
+        .animate__animated {
+            opacity: 0;
+            animation-fill-mode: both;
+        }
 
-            section {
-                padding: 3rem 0;
-            }
+        .animate__fadeInDown {
+            animation: fadeInDown 1s ease-out forwards;
+        }
 
-            .navbar-toggler {
-                border-color: rgba(255, 255, 255, 0.5);
-            }
+        .animate__fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
 
-            .navbar-toggler-icon {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-            }
+        .animate__zoomIn {
+            animation: zoomIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Class added by JS for scroll animation */
+        .animate-fade-in {
+            opacity: 1;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
+    <nav class="navbar">
+        <div class="container navbar-content">
             <a class="navbar-brand" href="#">Fitsum Mehari</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Home Section -->
-    <section id="home" class="d-flex align-items-center">
-        <div class="container text-center">
+    <section id="home">
+        <div class="container content">
             <h1 class="display-3 animate__animated animate__fadeInDown">Hi, I'm Fitsum</h1>
             <p class="lead animate__animated animate__fadeInUp">A passionate Computer Engineer specializing in Full-Stack Development, and UI Designing.</p>
-            <a href="#projects" class="btn btn-primary btn-lg hero-btn animate__animated animate__zoomIn">View My Work</a>
+            <a href="#projects" class="btn btn-primary animate__animated animate__zoomIn">View My Work</a>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="bg-light">
         <div class="container">
-            <h2 class="text-center section-title">About Me</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-center mb-4 mb-lg-0">
-                    <!-- Replace with your actual profile picture -->
-                    <img src="https://placehold.co/300x300/CCCCCC/333333?text=Your+Photo" alt="Your Name" class="img-fluid profile-img">
-                </div>
-                <div class="col-lg-8">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <img src="https://placehold.co/300x300/CCCCCC/333333?text=Your+Photo" alt="Fitsum Mehari" class="profile-img">
+                <div>
                     <p class="lead">
                         I am a dedicated Computer Engineer with a strong foundation in website development, and UI design. My journey in technology is driven by a curiosity to solve complex problems and build innovative solutions.
                     </p>
@@ -345,73 +568,48 @@
     <!-- Skills Section -->
     <section id="skills">
         <div class="container">
-            <h2 class="text-center section-title">Skills</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fab fa-js-square"></i> <!-- JavaScript Icon -->
-                        <h4>JavaScript</h4>
-                        <p>ES6+, Node.js, React, Angular</p>
-                    </div>
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <span class="icon-placeholder">💻</span>
+                    <h4>JavaScript</h4>
+                    <p>ES6+, Node.js, React, Angular</p>
                 </div>
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fab fa-js-square"></i> <!-- Dart Icon -->
-                        <h4>Dart</h4>
-                        <p>Flutter</p>
-                    </div>
+                <div class="skill-item">
+                    <span class="icon-placeholder">📱</span>
+                    <h4>Dart</h4>
+                    <p>Flutter</p>
                 </div>
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fab fa-js-square"></i> <!-- Java Icon -->
-                        <h4>Java</h4>
-                        <p>JavaFX, Swing</p>
-                    </div>
+                <div class="skill-item">
+                    <span class="icon-placeholder">☕</span>
+                    <h4>Java</h4>
+                    <p>JavaFX, Swing</p>
                 </div>
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fab fa-python"></i> <!-- Python Icon -->
-                        <h4>Python</h4>
-                        <p>Django</p>
-                    </div>
+                <div class="skill-item">
+                    <span class="icon-placeholder">🐍</span>
+                    <h4>Python</h4>
+                    <p>Django</p>
                 </div>
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fas fa-database"></i> <!-- Database Icon -->
-                        <h4>Databases</h4>
-                        <p>SQL (MySQL, SQLite), NoSQL (MongoDB, Firebase)</p>
-                    </div>
+                <div class="skill-item">
+                    <span class="icon-placeholder">🗄️</span>
+                    <h4>Databases</h4>
+                    <p>SQL (MySQL, SQLite), NoSQL (MongoDB, Firebase)</p>
                 </div>
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fab fa-aws"></i> <!-- Cloud Icon -->
-                        <h4>Cloud Platforms</h4>
-                        <p>Firebase, Render</p>
-                    </div>
+                <div class="skill-item">
+                    <span class="icon-placeholder">☁️</span>
+                    <h4>Cloud Platforms</h4>
+                    <p>Firebase, Render</p>
                 </div>
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fas fa-code-branch"></i> <!-- Version Control Icon -->
-                        <h4>Version Control</h4>
-                        <p>Git, GitHub</p>
-                    </div>
+                <div class="skill-item">
+                    <span class="icon-placeholder">🌿</span>
+                    <h4>Version Control</h4>
+                    <p>Git, GitHub</p>
                 </div>
-                <!-- Example Skill Item -->
-                <div class="col">
-                    <div class="card skill-item">
-                        <i class="fas fa-cogs"></i> <!-- Tools & Methodologies Icon -->
-                        <h4>Tools & Methodologies</h4>
-                        <p> Agile, Scrum, CI/CD</p>
-                    </div>
+                <div class="skill-item">
+                    <span class="icon-placeholder">⚙️</span>
+                    <h4>Tools & Methodologies</h4>
+                    <p>Agile, Scrum, CI/CD</p>
                 </div>
-                <!-- Add more skill items as needed -->
             </div>
         </div>
     </section>
@@ -419,112 +617,126 @@
     <!-- Projects Section -->
     <section id="projects" class="bg-light">
         <div class="container">
-            <h2 class="text-center section-title">My Projects</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- Example Project Card 1 -->
-                <div class="col">
-                    <div class="card project-card">
-                        <img src="https://placehold.co/600x400/9BB8CD/FFFFFF?text=Project+1+Image" class="img-fluid" alt="Project 1">
-                        <h5>Integrated Smart Campus ID and Services Platform</h5>
-                        <p>This is an admin panel for universities that integrates with mobile application digital IDs.</p>
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/9BB8CD/FFFFFF?text=Project+1+Image" alt="Project 1">
+                    <h5>Integrated Smart Campus ID and Services Platform</h5>
+                    <p>This is an admin panel for universities that integrates with mobile application digital IDs.</p>
+                    <div class="project-links">
                         <a href="https://integrated-smart-campus-id-and-services.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo <i class="fas fa-external-link-alt"></i>
+                            View Live Demo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
+                            </svg>
                         </a>
-                        <a href="https://github.com/FitsumMehari/integrated-smart-campus-id-and-services-platform/" target="_blank" class="project-link mt-2">
-                            GitHub Repo <i class="fab fa-github"></i>
+                        <a href="https://github.com/FitsumMehari/integrated-smart-campus-id-and-services-platform/" target="_blank" class="project-link">
+                            GitHub Repo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
-                <!-- Example Project Card 2 -->
-                <div class="col">
-                    <div class="card project-card">
-                        <img src="https://placehold.co/600x400/EAD8CD/333333?text=Project+2+Image" class="img-fluid" alt="Project 2">
-                        <h5>Exit Exam Preparation Website</h5>
-                        <p>A website designed to help graduating students of universities to get familiar with the exams using mock exam questions, materials and tutorials.</p>
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/EAD8CD/333333?text=Project+2+Image" alt="Project 2">
+                    <h5>Exit Exam Preparation Website</h5>
+                    <p>A website designed to help graduating students of universities to get familiar with the exams using mock exam questions, materials and tutorials.</p>
+                    <div class="project-links">
                         <a href="https://exitexam-npj3.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo <i class="fas fa-external-link-alt"></i>
+                            View Live Demo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
+                            </svg>
                         </a>
-                        <a href="https://github.com/FitsumMehari/semesterProjectNew/tree/master/" target="_blank" class="project-link mt-2">
-                            GitHub Repo <i class="fab fa-github"></i>
+                        <a href="https://github.com/FitsumMehari/semesterProjectNew/tree/master/" target="_blank" class="project-link">
+                            GitHub Repo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
-                <!-- Example Project Card 3 -->
-                <div class="col">
-                    <div class="card project-card">
-                        <img src="https://placehold.co/600x400/F5CCA0/333333?text=Project+3+Image" class="img-fluid" alt="Project 3">
-                        <h5>Club Organiser</h5>
-                        <p>A platform for various clubs to manage their clubs and organise events.</p>
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/F5CCA0/333333?text=Project+3+Image" alt="Project 3">
+                    <h5>Club Organiser</h5>
+                    <p>A platform for various clubs to manage their clubs and organise events.</p>
+                    <div class="project-links">
                         <a href="https://club-organiser.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo <i class="fas fa-external-link-alt"></i>
+                            View Live Demo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
+                            </svg>
                         </a>
-                        <a href="https://github.com/FitsumMehari/club-organiser/" target="_blank" class="project-link mt-2">
-                            GitHub Repo <i class="fab fa-github"></i>
+                        <a href="https://github.com/FitsumMehari/club-organiser/" target="_blank" class="project-link">
+                            GitHub Repo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
-
-                <div class="col">
-                    <div class="card project-card">
-                        <img src="https://placehold.co/600x400/F5CCA0/333333?text=Project+3+Image" class="img-fluid" alt="Project 4">
-                        <h5>Metadata Extractor</h5>
-                        <p>A platform for managing metadata from images.</p>
+                <div class="project-card">
+                    <img src="https://placehold.co/600x400/F5CCA0/333333?text=Project+3+Image" alt="Project 4">
+                    <h5>Metadata Extractor</h5>
+                    <p>A platform for managing metadata from images.</p>
+                    <div class="project-links">
                         <a href="https://fetchmetadatadeployed.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo <i class="fas fa-external-link-alt"></i>
+                            View Live Demo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
+                            </svg>
                         </a>
-                        <a href="https://github.com/FitsumMehari/fetchmetadatadeployed" target="_blank" class="project-link mt-2">
-                            GitHub Repo <i class="fab fa-github"></i>
+                        <a href="https://github.com/FitsumMehari/fetchmetadatadeployed" target="_blank" class="project-link">
+                            GitHub Repo
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
-                <!-- Add more project cards as needed -->
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" class="bg-dark">
         <div class="container text-center">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title white-text">Get In Touch</h2>
             <p class="lead mb-4">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
             <div class="contact-info mb-5">
-                <p><i class="fas fa-envelope me-2"></i> <a href="mailto:m.fitsummehari@gmail.com" class="text-white text-decoration-none">m.fitsummehari@gmail.com</a></p>
-                <p><i class="fas fa-phone me-2"></i> <a href="tel:+1234567890" class="text-white text-decoration-none">+251920550658</a> (Optional)</p>
-                <p><i class="fas fa-map-marker-alt me-2"></i> Addis Ababa, Ethiopia</p>
+                <p><span class="me-2">📧</span> <a href="mailto:m.fitsummehari@gmail.com">m.fitsummehari@gmail.com</a></p>
+                <p><span class="me-2">📞</span> <a href="tel:+1234567890">+251920550658</a> (Optional)</p>
+                <p><span class="me-2">📍</span> Addis Ababa, Ethiopia</p>
             </div>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/fitsum-mehari-3263051b6/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/FitsumMehari" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <!-- Corrected the commented-out Twitter link (was missing closing 'a' tag) -->
-                <!-- <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a> -->
-                <!-- Add more social links as needed (e.g., Stack Overflow, personal website) -->
+                <a href="https://www.linkedin.com/in/fitsum-mehari-3263051b6/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://github.com/FitsumMehari" target="_blank" aria-label="GitHub">GitHub</a>
+                <!-- Add more social links as needed -->
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer text-center">
+    <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Fitsum Mehari. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap Bundle with Popper - CORRECTED: Changed 'xintegrity' to 'integrity' -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <!-- Custom JavaScript for smooth scrolling (if not handled by Bootstrap's scrollspy) -->
+    <!-- Custom JavaScript -->
     <script>
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
         });
 
-        // Add a simple animation on scroll for sections
+        // Simple Intersection Observer for scroll animations
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -534,14 +746,37 @@
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in'); // Add a class for animation
+                    // Only apply animation if it's not the home section (which has initial animations)
+                    if (entry.target.id !== 'home') {
+                        entry.target.classList.add('animate-fade-in');
+                    }
                     observer.unobserve(entry.target); // Stop observing once animated
                 }
             });
         }, observerOptions);
 
+        // Observe all sections except the home section for animation
         document.querySelectorAll('section:not(#home)').forEach(section => {
             observer.observe(section);
+        });
+
+        // Navbar toggle for mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('open');
+            menuToggle.classList.toggle('open'); // For hamburger animation
+        });
+
+        // Close menu when a link is clicked (for mobile)
+        navList.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navList.classList.remove('open');
+                    menuToggle.classList.remove('open');
+                }
+            });
         });
     </script>
 </body>

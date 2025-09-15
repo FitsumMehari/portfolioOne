@@ -3,782 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitsum Mehari - Portfolio</title>
-    <!-- Favicon -->
-    <link rel="icon" href="https://placehold.co/32x32/000000/FFFFFF?text=P" type="image/x-icon">
-
-    <!-- Google Fonts - Inter for a professional look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <style>
-        /* CSS Variables for easy theme changes */
-        :root {
-            --primary-color: #4A90E2; /* Blue */
-            --secondary-color: #F8F9FA; /* Light Gray */
-            --dark-color: #212529; /* Dark Gray */
-            --text-color: #343A40; /* Slightly lighter dark text */
-            --light-text-color: #6C757D; /* Medium Gray for secondary text */
-            --border-radius: 0.75rem;
-            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
-        }
-
-        /* Basic Reset & Body Styling */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            scroll-behavior: smooth;
-            line-height: 1.6;
-        }
-
-        /* Container for content width */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 5rem 0;
-            position: relative;
-            z-index: 1;
-            text-align: center; /* Center content by default */
-        }
-
-        section.bg-light {
-            background-color: white; /* Simulate Bootstrap's bg-light */
-        }
-
-        section.bg-dark {
-            background-color: var(--dark-color);
-            color: white;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--dark-color);
-            position: relative;
-            display: inline-block;
-        }
-        .section-title.white-text {
-            color: white;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 5px;
-            background-color: var(--primary-color);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 5px;
-        }
-
-        /* Navbar Styling */
-        .navbar {
-            background-color: var(--dark-color);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000; /* Ensure navbar stays on top */
-            padding: 1rem 0;
-        }
-
-        .navbar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-brand {
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
-            text-decoration: none;
-        }
-
-        .nav-list {
-            list-style: none;
-            display: flex;
-            margin: 0;
-        }
-
-        .nav-item {
-            margin-left: 1.5rem;
-        }
-
-        .nav-link {
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        /* Hamburger Menu (for mobile) */
-        .menu-toggle {
-            display: none; /* Hidden by default on larger screens */
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            position: relative;
-            z-index: 1001; /* Above nav-list */
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px 0;
-            transition: all 0.3s ease-in-out;
-            border-radius: 2px;
-        }
-
-        .menu-toggle.open span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-        .menu-toggle.open span:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.open span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* Responsive Navigation */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            .nav-list {
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--dark-color);
-                height: 0; /* Hidden by default */
-                overflow: hidden;
-                transition: height 0.3s ease-in-out;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .nav-list.open {
-                height: auto; /* Show when open */
-                padding-bottom: 1rem;
-            }
-            .nav-item {
-                margin: 0;
-                width: 100%;
-                text-align: center;
-                padding: 0.75rem 0;
-            }
-            .nav-link {
-                display: block; /* Make links full width of item */
-            }
-        }
-
-
-        /* Hero Section */
-        #home {
-            background: linear-gradient(135deg, var(--dark-color) 0%, #343A40 100%);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Center horizontally */
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #home::before { /* Particle effect */
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-        #home .content {
-            position: relative; /* Bring content above particles */
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        #home h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        #home p {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin: 0 auto 2rem auto;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            font-size: 1.2rem;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent; /* Default border */
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            background-color: #3A7BD5; /* Slightly darker primary */
-            border-color: #3A7BD5;
-            transform: translateY(-3px);
-        }
-
-        /* About Section */
-        #about .about-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem; /* Spacing between image and text */
-            text-align: left;
-        }
-
-        #about .profile-img {
-            max-width: 300px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            flex-shrink: 0; /* Prevent shrinking */
-            height: auto; /* Maintain aspect ratio */
-            display: block; /* Remove extra space below image */
-        }
-
-        #about p {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: center;
-            transition: transform 0.2s ease-in-out;
-            height: 100%; /* Ensure consistent height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-item .icon-placeholder {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            line-height: 1; /* Adjust line height for icons */
-        }
-
-        .skill-item h4 {
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-item p {
-            color: var(--light-text-color);
-            font-size: 0.95rem;
-            margin-bottom: 0; /* Remove default paragraph margin */
-        }
-
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            transition: transform 0.2s ease-in-out;
-            height: 100%; /* Ensure consistent height */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-align: left; /* Align text within card */
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-card img {
-            max-width: 100%;
-            height: 200px; /* Fixed height for project images */
-            object-fit: cover; /* Cover the area */
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-            display: block; /* Remove extra space below image */
-        }
-
-        .project-card h5 {
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 0.75rem;
-            font-size: 1.25rem;
-        }
-
-        .project-card p {
-            color: var(--light-text-color);
-            flex-grow: 1; /* Allow description to take available space */
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .project-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .project-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
-            display: inline-flex; /* Align icon and text */
-            align-items: center;
-        }
-
-        .project-link:hover {
-            color: #3A7BD5; /* Slightly darker primary */
-            text-decoration: underline;
-        }
-
-        .project-link svg {
-            margin-left: 0.5rem;
-            width: 16px;
-            height: 16px;
-            fill: currentColor; /* Inherit color from parent link */
-        }
-
-
-        /* Contact Section */
-        #contact .contact-info p {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        #contact .contact-info a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        #contact .contact-info a:hover {
-            color: var(--primary-color);
-        }
-
-        #contact .social-links {
-            margin-top: 2rem;
-        }
-
-        #contact .social-links a {
-            color: white;
-            font-size: 2rem;
-            margin: 0 0.75rem;
-            transition: color 0.2s ease, transform 0.2s ease;
-            text-decoration: none; /* Remove underline from links */
-        }
-
-        #contact .social-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #1A1D20;
-            color: rgba(255, 255, 255, 0.7);
-            padding: 2rem 0;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        /* Utility Classes (mimicking common Bootstrap ones) */
-        .text-center { text-align: center; }
-        .mb-4 { margin-bottom: 1.5rem; }
-        .mb-5 { margin-bottom: 3rem; }
-        .mt-2 { margin-top: 0.5rem; }
-        .me-2 { margin-right: 0.5rem; }
-        .lead { font-size: 1.25rem; font-weight: 300; }
-        .display-3 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; } /* Equivalent to Bootstrap's display-3 */
-
-        /* Responsive Adjustments */
-        @media (max-width: 992px) { /* Adjust for medium screens */
-            #home h1 { font-size: 3rem; }
-            #home p { font-size: 1.3rem; }
-            .section-title { font-size: 2.2rem; }
-            #about .about-content { flex-direction: column; text-align: center; }
-            #about .profile-img { margin-bottom: 1.5rem; }
-        }
-
-        @media (max-width: 768px) { /* Adjust for small screens (mobile) */
-            section { padding: 3rem 0; }
-            #home h1 { font-size: 2.5rem; }
-            #home p { font-size: 1.1rem; }
-            .section-title { font-size: 2rem; }
-            .btn { font-size: 1rem; padding: 0.7rem 1.5rem; }
-            .skills-grid, .projects-grid {
-                grid-template-columns: 1fr; /* Stack columns on small screens */
-            }
-        }
-
-        /* Animation classes (from previous code, simple for this version) */
-        .animate__animated {
-            opacity: 0;
-            animation-fill-mode: both;
-        }
-
-        .animate__fadeInDown {
-            animation: fadeInDown 1s ease-out forwards;
-        }
-
-        .animate__fadeInUp {
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        .animate__zoomIn {
-            animation: zoomIn 1s ease-out forwards;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Class added by JS for scroll animation */
-        .animate-fade-in {
-            opacity: 1;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Fitsum Mehari - Full-Stack Developer</title>
+    <link rel="icon" href="https://placehold.co/32x32/1E293B/E2E8F0?text=FM" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container navbar-content">
-            <a class="navbar-brand" href="#">Fitsum Mehari</a>
-            <button class="menu-toggle" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-list">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
+    <header class="header">
+        <div class="container nav-container">
+            <a class="logo" href="#">Fitsum Mehari</a>
+            <a href="./Cv New.pdf" class="btn btn-secondary" download>Download CV</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="#about">About</a></li>
+                    <li><a class="nav-link" href="#skills">Skills</a></li>
+                    <li><a class="nav-link" href="#projects">Projects</a></li>
+                    <li><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Home Section -->
-    <section id="home">
-        <div class="container content">
-            <h1 class="display-3 animate__animated animate__fadeInDown">Hi, I'm Fitsum</h1>
-            <p class="lead animate__animated animate__fadeInUp">A passionate Computer Engineer specializing in Full-Stack Development, and UI Designing.</p>
-            <a href="#projects" class="btn btn-primary animate__animated animate__zoomIn">View My Work</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="bg-light">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-<!--                 <img src="https://placehold.co/300x300/CCCCCC/333333?text=Your+Photo" alt="Fitsum Mehari" class="profile-img"> -->
-                <img src="images/profilePic.jpg" alt="Fitsum Mehari" class="profile-img">
-                <div>
-                    <p class="lead">
-                        I am a dedicated Computer Engineer with a strong foundation in website development, and UI design. My journey in technology is driven by a curiosity to solve complex problems and build innovative solutions.
-                    </p>
-                    <p>
-                        With experience in web development, and UI design, I thrive in collaborative environments and am committed to continuous learning. I am passionate about creating efficient and scalable applications, exploring new technologies, and contributing to open-source projects.
-                    </p>
-                    <p>
-                        Outside of coding, I enjoy exercising, and reading which helps me maintain a balanced perspective and sparks creativity.
-                    </p>
-                </div>
+    <main>
+        <section id="home" class="hero-section">
+            <div class="container hero-content">
+                <h1 class="hero-title">
+                    <span class="text-accent">Hello, I'm Fitsum.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A Full-Stack Engineer passionate about building scalable, efficient, and user-centric web applications.
+                </p>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <span class="icon-placeholder">💻</span>
-                    <h4>JavaScript</h4>
-                    <p>ES6+, Node.js, React, Angular</p>
-                </div>
-                <div class="skill-item">
-                    <span class="icon-placeholder">📱</span>
-                    <h4>Dart</h4>
-                    <p>Flutter</p>
-                </div>
-                <div class="skill-item">
-                    <span class="icon-placeholder">☕</span>
-                    <h4>Java</h4>
-                    <p>JavaFX, Swing</p>
-                </div>
-                <div class="skill-item">
-                    <span class="icon-placeholder">🐍</span>
-                    <h4>Python</h4>
-                    <p>Django</p>
-                </div>
-                <div class="skill-item">
-                    <span class="icon-placeholder">🗄️</span>
-                    <h4>Databases</h4>
-                    <p>SQL (MySQL, SQLite), NoSQL (MongoDB, Firebase)</p>
-                </div>
-                <div class="skill-item">
-                    <span class="icon-placeholder">☁️</span>
-                    <h4>Cloud Platforms</h4>
-                    <p>Firebase, Render</p>
-                </div>
-                <div class="skill-item">
-                    <span class="icon-placeholder">🌿</span>
-                    <h4>Version Control</h4>
-                    <p>Git, GitHub</p>
-                </div>
-                <div class="skill-item">
-                    <span class="icon-placeholder">⚙️</span>
-                    <h4>Tools & Methodologies</h4>
-                    <p>Agile, Scrum, CI/CD</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="bg-light">
-        <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="https://placehold.co/600x400/9BB8CD/FFFFFF?text=Project+1+Image" alt="Project 1">
-                    <h5>Integrated Smart Campus ID and Services Platform</h5>
-                    <p>This is an admin panel for universities that integrates with mobile application digital IDs.</p>
-                    <div class="project-links">
-                        <a href="https://integrated-smart-campus-id-and-services.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/FitsumMehari/integrated-smart-campus-id-and-services-platform/" target="_blank" class="project-link">
-                            GitHub Repo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
+        <section id="about" class="section about-section">
+            <div class="container about-container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="profile-img-container">
+                        <img src="https://placehold.co/500x500/1E293B/E2E8F0?text=Your+Photo" alt="Fitsum Mehari" class="profile-img">
                     </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://placehold.co/600x400/EAD8CD/333333?text=Project+2+Image" alt="Project 2">
-                    <h5>Exit Exam Preparation Website</h5>
-                    <p>A website designed to help graduating students of universities to get familiar with the exams using mock exam questions, materials and tutorials.</p>
-                    <div class="project-links">
-                        <a href="https://exitexam-npj3.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/FitsumMehari/semesterProjectNew/tree/master/" target="_blank" class="project-link">
-                            GitHub Repo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://placehold.co/600x400/F5CCA0/333333?text=Project+3+Image" alt="Project 3">
-                    <h5>Club Organiser</h5>
-                    <p>A platform for various clubs to manage their clubs and organise events.</p>
-                    <div class="project-links">
-                        <a href="https://club-organiser.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/FitsumMehari/club-organiser/" target="_blank" class="project-link">
-                            GitHub Repo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://placehold.co/600x400/F5CCA0/333333?text=Project+4+Image" alt="Project 4">
-                    <h5>Metadata Extractor</h5>
-                    <p>A platform for managing metadata from images.</p>
-                    <div class="project-links">
-                        <a href="https://fetchmetadatadeployed.onrender.com/" target="_blank" class="project-link">
-                            View Live Demo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M18 10h-2v2h2v4h-4v-2h-2v2h-2v-2h-2v2h-2V6h8v2h2v-2c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-6h2v6c0 2.201-1.791 4-4 4H4c-2.209 0-4-1.799-4-4V6c0-2.201 1.791-4 4-4h8c2.209 0 4 1.799 4 4v4zm-7.929-.292a1.002 1.002 0 0 0-.001 1.414l5.001 5.001 1.414-1.414-5-5a1.002 1.002 0 0 0-1.414.001zM20 7.999h-3V5.001h3c1.103 0 2 .897 2 2v15c0 1.103-.897 2-2 2h-15c-1.103 0-2-.897-2-2v-3h3v3h15V7.999z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/FitsumMehari/fetchmetadatadeployed" target="_blank" class="project-link">
-                            GitHub Repo
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.11.819-.26.819-.578v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.744.084-.73.084-.73 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.997.107-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.383 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.006.404 2.296-1.552 3.297-1.23 3.297-1.23.645 1.653.24 2.873.105 3.176.77.837 1.235 1.91 1.235 3.22 0 4.61-2.801 5.624-5.475 5.92-.42.36-.816 1.1-.816 2.227v3.293c0 .319.217.691.825.578 4.766-1.587 8.203-6.085 8.203-11.387c0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
+                    <div class="about-text">
+                        <p class="lead-text">
+                            I am a results-driven full-stack engineer with expertise in the **NestJS, Angular, Docker, and MariaDB** stack. My passion for web development began as a hobby and grew into a professional career, which led me to earn a degree in Electrical and Computer Engineering.
+                        </p>
+                        <p>
+                            My primary strength is my ability to quickly learn and apply new concepts, allowing me to build scalable and efficient applications from the ground up. I am highly disciplined and self-motivated, with a work style centered on proactive communication and autonomous problem-solving.
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="bg-dark">
-        <div class="container text-center">
-            <h2 class="section-title white-text">Get In Touch</h2>
-            <p class="lead mb-4">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-            <div class="contact-info mb-5">
-                <p><span class="me-2">📧</span> <a href="mailto:m.fitsummehari@gmail.com">m.fitsummehari@gmail.com</a></p>
-                <p><span class="me-2">📞</span> <a href="tel:+1234567890">+251920550658</a></p>
-                <p><span class="me-2">📍</span> Addis Ababa, Ethiopia</p>
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <h2 class="section-title">My Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4 class="skill-title">Frontend</h4>
+                        <p class="skill-description">Angular, HTML, CSS, JavaScript, TypeScript</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4 class="skill-title">Backend</h4>
+                        <p class="skill-description">NestJS, Node.js, Express.js</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4 class="skill-title">Databases</h4>
+                        <p class="skill-description">MariaDB, MongoDB</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4 class="skill-title">Tools & DevOps</h4>
+                        <p class="skill-description">Docker, Git, GitLab, APIs, REST</p>
+                    </div>
+                </div>
             </div>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/fitsum-mehari-3263051b6/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
-                <a href="https://github.com/FitsumMehari" target="_blank" aria-label="GitHub">GitHub</a>
-                <!-- Add more social links as needed -->
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <img src="https://placehold.co/600x400/1E293B/E2E8F0?text=Project+1+Preview" alt="Integrated Smart Campus ID and Services Platform" class="project-img">
+                        <h5 class="project-title">Integrated Smart Campus ID and Services Platform</h5>
+                        <p class="project-description">An admin panel for universities that integrates with a digital ID mobile application.</p>
+                        <div class="project-links">
+                            <a href="https://integrated-smart-campus-id-and-services.onrender.com/" target="_blank" class="project-link">Live Demo</a>
+                            <a href="https://github.com/FitsumMehari/integrated-smart-campus-id-and-services-platform/" target="_blank" class="project-link">GitHub</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="https://placehold.co/600x400/1E293B/E2E8F0?text=Project+2+Preview" alt="Exit Exam Preparation Website" class="project-img">
+                        <h5 class="project-title">Exit Exam Preparation Website</h5>
+                        <p class="project-description">A platform designed to help university students prepare for exit exams with mock questions and tutorials.</p>
+                        <div class="project-links">
+                            <a href="https://exitexam-npj3.onrender.com/" target="_blank" class="project-link">Live Demo</a>
+                            <a href="https://github.com/FitsumMehari/semesterProjectNew/tree/master/" target="_blank" class="project-link">GitHub</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="https://placehold.co/600x400/1E293B/E2E8F0?text=Project+3+Preview" alt="Club Organiser" class="project-img">
+                        <h5 class="project-title">Club Organiser</h5>
+                        <p class="project-description">A platform for student clubs to manage their activities and organize events efficiently.</p>
+                        <div class="project-links">
+                            <a href="https://club-organiser.onrender.com/" target="_blank" class="project-link">Live Demo</a>
+                            <a href="https://github.com/FitsumMehari/club-organiser/" target="_blank" class="project-link">GitHub</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="https://placehold.co/600x400/1E293B/E2E8F0?text=Project+4+Preview" alt="Metadata Extractor" class="project-img">
+                        <h5 class="project-title">Metadata Extractor</h5>
+                        <p class="project-description">A platform for managing and extracting metadata from image files.</p>
+                        <div class="project-links">
+                            <a href="https://fetchmetadatadeployed.onrender.com/" target="_blank" class="project-link">Live Demo</a>
+                            <a href="https://github.com/FitsumMehari/fetchmetadatadeployed" target="_blank" class="project-link">GitHub</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container text-center">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="lead-text">
+                    I'm always open to new opportunities and collaborations. Feel free to reach out to me or connect on my professional networks.
+                </p>
+                <div class="contact-info">
+                    <a href="mailto:m.fitsummehari@gmail.com" class="contact-link">
+                        m.fitsummehari@gmail.com
+                    </a>
+                    <a href="tel:+251920550658" class="contact-link">
+                        +251920550658
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/fitsum-mehari-3263051b6/" target="_blank" class="social-link">LinkedIn</a>
+                    <a href="https://github.com/FitsumMehari" target="_blank" class="social-link">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Fitsum Mehari. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Custom JavaScript -->
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Simple Intersection Observer for scroll animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Only apply animation if it's not the home section (which has initial animations)
-                    if (entry.target.id !== 'home') {
-                        entry.target.classList.add('animate-fade-in');
-                    }
-                    observer.unobserve(entry.target); // Stop observing once animated
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections except the home section for animation
-        document.querySelectorAll('section:not(#home)').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Navbar toggle for mobile
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navList = document.querySelector('.nav-list');
-
-        menuToggle.addEventListener('click', () => {
-            navList.classList.toggle('open');
-            menuToggle.classList.toggle('open'); // For hamburger animation
-        });
-
-        // Close menu when a link is clicked (for mobile)
-        navList.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navList.classList.remove('open');
-                    menuToggle.classList.remove('open');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
